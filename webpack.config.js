@@ -8,10 +8,10 @@ const alias = {
     "@components": path.resolve(__dirname, 'src/components/'),
     "@containers": path.resolve(__dirname, 'src/containers/'),
     "@pages": path.resolve(__dirname, 'src/pages/'),
+    "@public": path.resolve(__dirname, 'src/public/'),
 
     "@router": path.resolve(__dirname, 'src/routes/'),
     "@context": path.resolve(__dirname, 'src/context/'),
-    "@public": path.resolve(__dirname, 'src/public/'),
 
     "@icons": path.resolve(__dirname, 'src/assets/icons/'),
     "@logos": path.resolve(__dirname, 'src/assets/logos/'),
@@ -43,7 +43,6 @@ const files = {
     loader: 'file-loader',
     include: [
         path.resolve(__dirname, 'src', 'assets'),
-        path.resolve(__dirname, 'src', 'public')
     ],
     options: {
         name: '[path][name].[ext]',
@@ -103,7 +102,7 @@ module.exports = ({mode}) => {
         plugins: [
             new HtmlWebpackPlugin({
                 inject : true,
-                /* favicon: "./src/public/favicon.png", */
+                favicon: "./src/public/favicon.png",
                 template: './src/public/index.html',
                 filename: './index.html'
             }),
@@ -128,6 +127,7 @@ module.exports = ({mode}) => {
             open: false,
             port: 3000,
             compress: true,
+            historyApiFallback: true,
             client: {
                 overlay: {
                     errors: true,

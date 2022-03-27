@@ -1,8 +1,8 @@
+import MyRoutes from '@router/Router.jsx';
+
 const App = () => {
     return (
-        <div>
-            <h1>Hello World</h1>
-        </div>
+        <MyRoutes />
     );
 }
 

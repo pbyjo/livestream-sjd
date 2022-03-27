@@ -6,9 +6,128 @@
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: $main-font;
     font-size: 16px;
     line-height: 1.5;
     color: #333;
-    background-color: #fff;
+    background-color: $white-color;
+}
+
+header {
+    @include flex-center;
+    justify-content: space-between;
+    background-color: $white-background;
+    height: 80px;
+    & > a {
+        margin: 0 20px; 
+        & > img {
+            width: 200px;
+            height: auto;
+        }
+    }
+
+    & > nav {
+        height: 100%;
+        margin: 0 20px;
+        padding: 10px;
+        transition: .1s ease-in-out all;
+        transition-delay: .1s;
+        @include flex-center;
+
+        .ancla__signin {
+            background-color: $color_red-institucional1;
+        }
+
+        & > a,
+            button {
+            font-size: .9rem;
+            transition: .1s ease-in-out all;
+            color: $white-color;
+        }
+
+        & > a {
+            padding: 10px;
+            background-color: $color_red-institucional3;
+        }
+
+        & > button {
+            height: 41.6px;
+            border: none;
+            padding: 0 12px;
+            background-color: $color_red-institucional1;
+            cursor: pointer;
+        }
+
+        & > a:hover,
+        & > button:hover {
+            color: $color_yellow-institucional1;
+            transform: scale(1.1);
+        }
+
+        & > a:active {
+            transform: scale(.9);
+        }
+    }
+}
+
+form {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    @include flex-center-column;
+    align-items: flex-start;
+    & > label {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+        cursor: pointer;
+    }
+
+    & > input {
+        font-size: .9rem;
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 6px 8px;
+        background-color: $white-color;
+        border: 2px solid transparent;
+        border-radius: $global-radius;
+        transition: .2s ease-in-out all;
+    }
+
+    & > button {
+        font-size: .9rem;
+        font-weight: bold;
+        align-self: center;
+        width: 60%;
+        padding: 8px;
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+        color: $white-color;
+        background-color: $color-register;
+    }
+}
+
+a {
+    width: max-content;
+    height: auto;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+input:focus {
+    border: 2px solid $color_yellow-institucional2;
+    outline: none;
+}
+
+button {
+    transition: .1s linear all;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+button:active {
+    transform: scale(.9);
 }
