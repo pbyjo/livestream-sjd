@@ -75,3 +75,8 @@ yarn-error.log
 # Build
 dist/
 build/
+
+# Firebase config
+/firebase
+./src/firebase/firebase.js
+firebase.js
