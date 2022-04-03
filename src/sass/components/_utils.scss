@@ -16,3 +16,24 @@
     -moz-box-shadow: 0px 3px 7px 1px rgba(0,0,0,0.1);
     box-shadow: 0px 3px 7px 1px rgba(0,0,0,0.1);
 }
+%boxshadow2 {
+    -webkit-box-shadow: 0px 3px 1px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 3px 1px 1px rgba(0,0,0,0.2);
+    box-shadow: 0px 3px 1px 1px rgba(0,0,0,0.2);
+}
+%boxshadow-red {
+    -webkit-box-shadow: 1px 1px 1px 1px rgba($color: $color_red-institucional1, $alpha: 0.2);
+    -moz-box-shadow: 1px 1px 1px 1px rgba($color: $color_red-institucional1, $alpha: 0.2);
+    box-shadow: 1px 1px 1px 1px rgba($color: $color_red-institucional1, $alpha: 0.2);
+}
+
+/* Scrollbar */
+%scrollbar-firefox {
+    scrollbar-color: white rgba(0, 0, 0, 0);
+    scrollbar-width: none;
+}
+
+%scrollbar-firefox-visible {
+    scrollbar-color: $hover-color rgba(0, 0, 0, 0);
+    scrollbar-width: thin;
+}

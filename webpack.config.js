@@ -13,6 +13,7 @@ const alias = {
     "@router": path.resolve(__dirname, 'src/routes/'),
     "@context": path.resolve(__dirname, 'src/context/'),
 
+    "@images": path.resolve(__dirname, 'src/assets/images/'),
     "@icons": path.resolve(__dirname, 'src/assets/icons/'),
     "@logos": path.resolve(__dirname, 'src/assets/logos/'),
     "@styles": path.resolve(__dirname, 'src/sass/'),

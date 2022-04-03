@@ -6,6 +6,7 @@ import {
 
 /* Components */
 import Header from '@components/Header.jsx'
+import Footer from '@components/Footer.jsx'
 import Layout from '@containers/Layout.jsx'
 import ProtectedRoute from '@pages/Protect.jsx';
 
@@ -33,6 +34,7 @@ const MyRoutes = () => {
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </Layout>
+            <Footer />
         </BrowserRouter>
     )  
 }

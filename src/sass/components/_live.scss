@@ -1,0 +1,7 @@
+.live__container {
+    @include flex-center;
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 16/9;
+    background-color: $white-background;
+}

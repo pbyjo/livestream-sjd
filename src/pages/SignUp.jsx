@@ -1,18 +1,21 @@
 import { useState } from "react";
 import { useMyAuth } from "@context/authContext";
 import { useNavigate, Link } from "react-router-dom";
+
 import Alert from "@components/Alert.jsx";
 
 import googleIcon from '@icons/googleIcon.svg';
 
 const Signup = () => {
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
     const [user, setUser] = useState({
+        displayName: "",
         email: "",
         password: "",
     })
 
-    const { register, loginWithGoogle } = useMyAuth();
+    const { register, loginWithGoogle, sendUserToDB } = useMyAuth();
 
     const navigate = useNavigate();
 
@@ -25,28 +28,34 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(!loading);
+        setUser({...user})
         try {
-            await register(user.email, user.password);
+            const registredData = await register(user.email, user.password);
+            await sendUserToDB(user.displayName, user.email, registredData);
+            setLoading(!loading);
             navigate('/')
         } catch (error) {
             if(error.code === "auth/email-already-in-use") {
                 setError("Este email ya está registrado");
-                console.log(error)
             } if(error.code === "auth/invalid-email") {
                 setError("Digita un email valido");
-                console.log(error);
             } if(error.code === "auth/weak-password") {
                 setError("Tu contraseña debe contener al menos 6 caracteres");
-                console.log(error);
             }
+            setLoading(false);
         }
     }
 
     const handleGoogleSignin = async () => {
+        setLoading(!loading);
         try {
-            await loginWithGoogle();
+            const registredDataUser = await loginWithGoogle();
+            await sendUserToDB(registredDataUser.user.displayName, registredDataUser.user.email, registredDataUser);
+            setLoading(!loading);
             navigate('/');
         } catch (error) {
+            setLoading(false)
             setError(error.message)
         }
     }
@@ -58,6 +67,17 @@ const Signup = () => {
                 error && <Alert message={error}></Alert>
             }
             <form onSubmit={handleSubmit}>
+                <label htmlFor="name">Nombre</label>
+                        <input 
+                            type="text"
+                            name="displayName"
+                            id="displayName"
+                            required
+                            value={user.displayName}
+                            placeholder='Primer nombre'
+                            maxLength='12'
+                            onChange={handleChange}
+                            />
                 <label htmlFor="email">Email</label>
                     <input 
                         type="text" 
@@ -80,7 +100,9 @@ const Signup = () => {
                     />  
                 <button 
                     type="submit">
-                    Registrarme
+                    {
+                        loading ? "Creando..." : "Registrarme"
+                    }
                 </button>
             </form>
 

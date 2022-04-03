@@ -6,13 +6,14 @@ import Alert from "@components/Alert.jsx";
 import googleIcon from '@icons/googleIcon.svg';
 
 const Login = () => {
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
     const [user, setUser] = useState({
         email: "",
         password: "",
     })
 
-    const { login, loginWithGoogle } = useMyAuth();
+    const { login, loginWithGoogle, sendUserToDB, updateStateUserToDB } = useMyAuth();
     const navigate = useNavigate();
 
     const handleChange = ({target: {name, value}}) => {
@@ -24,25 +25,33 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(!loading);
+        setUser({...user})
         try {
-            await login(user.email, user.password);
+            const credentialUser = await login(user.email, user.password);
+            await updateStateUserToDB(true, credentialUser)
+            setLoading(!loading);
             navigate('/');
         } catch (error) {
             if(error.code === "auth/user-not-found") {
                 setError("Usuario no encontrado");
-                console.log(error);
             } if(error.code === "auth/wrong-password") {
                 setError("Contraseña incorrecta");
-                console.log(error);
             }
+            setLoading(false);
         }
     }
 
     const handleGoogleSignin = async () => {
+        setLoading(!loading);
         try {
-            await loginWithGoogle();
+            const registredDataUser = await loginWithGoogle();
+            await sendUserToDB(registredDataUser.user.displayName, registredDataUser.user.email, registredDataUser);
+            await updateStateUserToDB(true, registredDataUser)
+            setLoading(!loading);
             navigate('/');
         } catch (error) {
+            setLoading(false)
             setError(error.message)
         }
     }
@@ -75,7 +84,9 @@ const Login = () => {
                     onChange={handleChange}/>
                 <button 
                     type="submit">
-                    Entrar
+                    {
+                        loading ? 'Entrando..' : 'Entrar'
+                    }
                 </button>
             </form>
 

@@ -1,4 +1,9 @@
 import { useMyAuth } from "../context/authContext";
+import Chat from '@components/Chat.jsx'
+import Live from '@components/Live.jsx'
+
+/* Components */
+import Loading from '@components/Loading.jsx'
 
 const Home = () => {
     
@@ -6,10 +11,12 @@ const Home = () => {
 
     return(
         <section className="home__container">
-            <h1>Home</h1>
             {
-                loading && <h1>Cargando...</h1>
+                loading && <Loading />
             }
+
+            <Live />
+            <Chat />
         </section>
     )
 }

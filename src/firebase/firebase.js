@@ -4,6 +4,8 @@ import { initializeApp } from "firebase/app";
 
 /* Conexion hacia la autenticación */
 import { getAuth } from "firebase/auth";
+import {getFirestore} from "firebase/firestore";
+import {getStorage} from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -12,14 +14,15 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
-    apiKey: "AIzaSyBiQNgo2K0DUddH_b9PPrbBJ2lQJ00NqUw",
-    authDomain: "transmisiones-sjd.firebaseapp.com",
-    projectId: "transmisiones-sjd",
-    storageBucket: "transmisiones-sjd.appspot.com",
-    messagingSenderId: "434052606042",
-    appId: "1:434052606042:web:1657bb62b571ae3bb15063",
-    measurementId: "G-KVVSN5W8W2"
+    apiKey: "AIzaSyDHD8AUesh5RCi2hdnRL1hNFooyfuFg4MM",
+    authDomain: "eventos-web-sjd.firebaseapp.com",
+    projectId: "eventos-web-sjd",
+    storageBucket: "eventos-web-sjd.appspot.com",
+    messagingSenderId: "598170838755",
+    appId: "1:598170838755:web:85dc2968d5b3d25f1d07d6",
+    measurementId: "G-8F9D9LYZHQ"
 };
 
 
@@ -28,5 +31,7 @@ const app = initializeApp(firebaseConfig);
 /* const analytics = getAnalytics(app); */
 
 const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-export default auth;
+export {auth, db, storage};
