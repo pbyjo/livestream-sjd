@@ -28,6 +28,12 @@
     min-height: inherit;
 }
 
+@media screen and (max-width: 1000px) {
+    .home__container {
+        flex-wrap: wrap;
+    }
+}
+
 .sign__container {
     width: 100%;
     max-width: 420px;

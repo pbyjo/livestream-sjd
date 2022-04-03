@@ -5,6 +5,7 @@
     max-width: 560px;
     height: 600px;
     max-height: 60vh;
+    margin: 20px;
     &-aside,
     &-boxchat {
         @include flex-center-column;
@@ -34,6 +35,13 @@
                 border: none;
                 background-color: transparent;
                 cursor: pointer;
+            }
+        }
+        @media screen and (max-width: 1280px) {
+            &_header {
+                & > h2 {
+                    font-size: .8rem;
+                }
             }
         }
         &_canales {
@@ -100,6 +108,20 @@
                 & > p:nth-child(2) {
                     font-size: .6rem;
                     color: rgba($color: #000000, $alpha: .5);
+                }
+            }
+            @media screen and (max-width: 1280px) {
+                & > img {
+                    width: 28px;
+                    height: 28px;
+                }
+                & > span {
+                    & > p {
+                        font-size: .5rem;
+                    }
+                    & > p:nth-child(2) {
+                        font-size: .5rem;
+                    }
                 }
             }
         }
@@ -212,5 +234,11 @@
                 
             }
         }
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .chat__container {
+        height: 48vh;
     }
 }

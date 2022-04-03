@@ -12,6 +12,12 @@ body {
     background-color: $white-color;
 }
 
+@media screen and (max-width: 1280px) {
+    body {
+        font-size: 14px;
+    }
+}
+
 header {
     @include flex-center;
     @extend %boxshadow-red;
