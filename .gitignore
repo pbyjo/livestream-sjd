@@ -75,6 +75,7 @@ yarn-error.log
 # Build
 dist/
 build/
+production/
 
 # Firebase config
 /firebase
